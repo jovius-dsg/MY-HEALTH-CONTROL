@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Menu">
+
+    <TextView
+        android:id="@+id/textCadastro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Cadastro"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#2196F3"
+        android:textColorHint="#2196F3"
+        android:textSize="48sp" />
+
+    <EditText
+        android:id="@+id/editNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginRight="24dp"
+        android:ems="10"
+        android:fontFamily="@font/montserrat_medium"
+        android:hint="Nome:"
+        android:inputType="textPersonName"
+        android:textColorHint="#222222"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/editTelefone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginRight="24dp"
+        android:ems="10"
+        android:fontFamily="@font/montserrat_medium"
+        android:hint="Dosagem:"
+        android:inputType="textPersonName"
+        android:textColorHint="#222222"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textFrequencia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="280dp"
+        android:layout_marginRight="24dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Frequência:"
+        android:textColor="#222222"
+        android:textSize="24sp" />
+
+    <Spinner
+        android:id="@+id/spinnerFrequencia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="340dp"
+        android:layout_marginRight="24dp"
+        tools:listfooter="Mes" />
+
+    <TextView
+        android:id="@+id/textHorario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="420dp"
+        android:layout_marginRight="24dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Horário"
+        android:textColor="#222222"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/editNumero1"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="480dp"
+        android:layout_marginRight="24dp"
+        android:ems="10"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/textHorario2"
+        android:layout_width="92dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="480dp"
+        android:layout_marginRight="24dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:gravity="center_horizontal"
+        android:text=":"
+        android:textColor="#222222"
+        android:textSize="34sp" />
+
+    <EditText
+        android:id="@+id/editNumero2"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="480dp"
+        android:layout_marginRight="24dp"
+        android:ems="10"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/btnVariavel"
+        android:layout_width="350dp"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="111dp"
+        android:backgroundTint="#2196F3"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="VARIÁVEL"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btnVoltar"
+        android:layout_width="350dp"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#2196F3"
+        android:fontFamily="@font/montserrat_medium"
+        android:onClick="voltar"
+        android:text="voltar"
+        android:textSize="20sp" />
+
+</RelativeLayout>

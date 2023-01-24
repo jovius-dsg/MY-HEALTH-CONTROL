@@ -70,9 +70,8 @@
                 android:layout_marginRight="24dp"
                 android:ems="10"
                 android:fontFamily="@font/montserrat_medium"
-                android:hint="Quantas vezes ao dia"
-                android:inputType="textPersonName"
-                android:text="Quantas vezes ao dia: "
+                android:hint="Quantas vezes ao dia:"
+                android:inputType="number"
                 android:textColor="#222222"
                 android:textColorHint="#616161"
                 android:textSize="24sp" />

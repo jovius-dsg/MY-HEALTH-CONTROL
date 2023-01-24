@@ -1,6 +1,9 @@
 package com.example.myhealthcontrol;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.MenuItem;
@@ -36,6 +39,13 @@ public class Menu extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         getSupportActionBar().hide();
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("notificacao_remedio", "notificacao_remedio", NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription("notificacao");
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+
         bancoDAO = new BancoDAO(Menu.this);
 
         arrayListPessoa = bancoDAO.selectAllPessoa();
@@ -50,14 +60,14 @@ public class Menu extends AppCompatActivity {
             TextView nomeTV = findViewById(R.id.textNomePessoa);
             nomeTV.setText(arrayListPessoa.get(0).getNome());
 
-            lista = (ListView) findViewById(R.id.listRemedios);
+            lista = findViewById(R.id.listRemedios);
             registerForContextMenu(lista);
 
 
             lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                    Alarme alarmeEnviado = (Alarme) arrayAdapterAlarme.getItem(position);
+                    Alarme alarmeEnviado = arrayAdapterAlarme.getItem(position);
                     Intent i = new Intent(Menu.this, CadastrarRemedio.class);
                     i.putExtra("alarme", alarmeEnviado);
                     startActivity(i);

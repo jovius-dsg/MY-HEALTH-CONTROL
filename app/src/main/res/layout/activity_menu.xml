@@ -37,9 +37,15 @@
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center_horizontal"
-                android:text="José Carlos"
                 android:textColor="#222222"
                 android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nome            Horario             Frequência"
+                android:textSize="18dp" />
         </LinearLayout>
 
         <ScrollView
@@ -68,6 +74,7 @@
         android:layout_marginBottom="24dp"
         android:background="@drawable/background_button"
         android:backgroundTint="#2196F3"
+        android:onClick="adicionarRemedio"
         android:text="Adicinar Remédio"
         android:textColor="#FFFFFF"
         android:textSize="18dp" />

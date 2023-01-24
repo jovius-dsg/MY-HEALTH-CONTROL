@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvNome"
+            android:layout_width="166dp"
+            android:layout_height="wrap_content"
+            android:text="Nome"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/tvHorario"
+            android:layout_width="107dp"
+            android:layout_height="wrap_content"
+            android:text="Horario"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/tvFrequencia"
+            android:layout_width="138dp"
+            android:layout_height="wrap_content"
+            android:text="Frequencia"
+            android:textSize="18dp" />
+
+    </androidx.gridlayout.widget.GridLayout>
+</RelativeLayout>

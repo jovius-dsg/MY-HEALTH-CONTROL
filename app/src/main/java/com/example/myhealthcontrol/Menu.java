@@ -13,8 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myhealthcontrol.dao.AlarmeDao;
-import com.example.myhealthcontrol.dao.PessoaDao;
+import com.example.myhealthcontrol.dao.BancoDAO;
 import com.example.myhealthcontrol.modelo.Alarme;
 import com.example.myhealthcontrol.modelo.Pessoa;
 
@@ -26,8 +25,7 @@ public class Menu extends AppCompatActivity {
 
     ArrayAdapter<Alarme> arrayAdapterAlarme;
 
-    PessoaDao pessoaDao;
-    AlarmeDao alarmeDao;
+    BancoDAO bancoDAO;
 
     Alarme alarme;
     private ListView lista;
@@ -38,9 +36,9 @@ public class Menu extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         getSupportActionBar().hide();
 
-        pessoaDao = new PessoaDao(Menu.this);
+        bancoDAO = new BancoDAO(Menu.this);
 
-        arrayListPessoa = pessoaDao.selectAllPessoa();
+        arrayListPessoa = bancoDAO.selectAllPessoa();
 
         if (arrayListPessoa.size() <= 0) {
             Intent i = new Intent(Menu.this, Perfil.class);
@@ -60,7 +58,7 @@ public class Menu extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                     Alarme alarmeEnviado = (Alarme) arrayAdapterAlarme.getItem(position);
-                    Intent i = new Intent(Menu.this, Perfil.class);
+                    Intent i = new Intent(Menu.this, CadastrarRemedio.class);
                     i.putExtra("alarme", alarmeEnviado);
                     startActivity(i);
                 }
@@ -77,9 +75,9 @@ public class Menu extends AppCompatActivity {
     }
 
     public void populaLista() {
-        alarmeDao = new AlarmeDao(Menu.this);
-        arrayListAlarme = alarmeDao.selectAllAlarme();
-        pessoaDao.close();
+        bancoDAO = new BancoDAO(Menu.this);
+        arrayListAlarme = bancoDAO.selectAllAlarme();
+        bancoDAO.close();
 
         if (lista != null) {
             arrayAdapterAlarme = new ArrayAdapter<Alarme>(Menu.this, android.R.layout.simple_list_item_1, arrayListAlarme);
@@ -100,9 +98,9 @@ public class Menu extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 long retornoDB;
-                alarmeDao = new AlarmeDao(Menu.this);
-                retornoDB = alarmeDao.excluirAlarme(alarme);
-                alarmeDao.close();
+                bancoDAO = new BancoDAO(Menu.this);
+                retornoDB = bancoDAO.excluirAlarme(alarme);
+                bancoDAO.close();
 
                 if (retornoDB == -1) {
                     alert("Erro ao excluir!");

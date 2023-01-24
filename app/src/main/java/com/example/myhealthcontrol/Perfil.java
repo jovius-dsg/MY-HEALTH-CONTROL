@@ -9,14 +9,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myhealthcontrol.dao.PessoaDao;
+import com.example.myhealthcontrol.dao.BancoDAO;
 import com.example.myhealthcontrol.modelo.Pessoa;
 
 import java.util.ArrayList;
 
 public class Perfil extends AppCompatActivity {
-    PessoaDao pessoaDao;
-    Pessoa pessoa;
+    BancoDAO bancoDAO;
     long retornoDB;
     String resultado;
     ArrayList<Pessoa> arrayListPessoa;
@@ -38,12 +37,11 @@ public class Perfil extends AppCompatActivity {
                 Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
             } else {
                 Pessoa pessoa = new Pessoa();
-                Log.e("NOME", nome);
                 pessoa.setNome(nome);
-                pessoaDao = new PessoaDao(Perfil.this);
+                bancoDAO = new BancoDAO(Perfil.this);
 
 
-                retornoDB = pessoaDao.salvarPessoa(pessoa);
+                retornoDB = bancoDAO.salvarPessoa(pessoa);
 
                 if (retornoDB == -1) {
                     resultado = "Erro no banco";
@@ -53,7 +51,7 @@ public class Perfil extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
 
-                arrayListPessoa = pessoaDao.selectAllPessoa();
+                arrayListPessoa = bancoDAO.selectAllPessoa();
 
                 Intent i = new Intent(Perfil.this, Menu.class);
                 Bundle parametros = new Bundle();
@@ -63,7 +61,6 @@ public class Perfil extends AppCompatActivity {
             }
 
         } catch (Exception e) {
-            Log.e("ERORRRRR", e.toString());
             Toast.makeText(this, "Ops, infelizmente algo de errado aconteceu!", Toast.LENGTH_SHORT).show();
         }
     }

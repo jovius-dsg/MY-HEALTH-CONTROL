@@ -27,7 +27,7 @@ public class MemoBroadcast extends BroadcastReceiver {
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(R.drawable.icon)
                 .setLargeIcon(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.icon), 128, 128, false))
-                .setContentTitle("Hora de tomar o remédio: " + intent.getStringExtra("nome"))
+                .setContentTitle("É hora de tomar o remédio: " + intent.getStringExtra("nome"))
                 .setContentText("Está na hora  de tomar o remédio " + intent.getStringExtra("nome") + " às " + intent.getStringExtra("horario"))
                 .setPriority(Notification.PRIORITY_DEFAULT)
                 .addAction(R.drawable.icon, "VISUALIZAR REMÉDIOS", pendingIntent)

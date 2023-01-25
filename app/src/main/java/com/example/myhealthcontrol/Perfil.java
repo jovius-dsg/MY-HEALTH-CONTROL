@@ -1,8 +1,10 @@
 package com.example.myhealthcontrol;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -32,6 +34,8 @@ public class Perfil extends AppCompatActivity {
         try {
             EditText nomeET = findViewById(R.id.editNomePessoa);
             String nome = nomeET.getText().toString();
+
+            NotificationChannel();
 
             if (nome.isEmpty()) {
                 Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
@@ -63,5 +67,18 @@ public class Perfil extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(this, "Ops, infelizmente algo de errado aconteceu!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void NotificationChannel() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("Notification", "Remédio", importance);
+            channel.setDescription("Notificações dos remédios");
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+
     }
 }

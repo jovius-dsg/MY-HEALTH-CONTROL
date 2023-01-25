@@ -12,6 +12,9 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 public class MemoBroadcast extends BroadcastReceiver {
+    public MemoBroadcast() {
+
+    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -22,12 +25,12 @@ public class MemoBroadcast extends BroadcastReceiver {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "Notification")
                 .setContentIntent(pendingIntent)
-                .setSmallIcon(R.drawable.ic_launcher_background)
-                .setLargeIcon(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher_background), 128, 128, false))
-                .setContentTitle("Frases do dia!")
-                .setContentText("Veja uma nova frase e tenha um momento de inspiração para o seu dia!")
+                .setSmallIcon(R.drawable.icon)
+                .setLargeIcon(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.icon), 128, 128, false))
+                .setContentTitle("Hora de tomar o remédio: " + intent.getStringExtra("nome"))
+                .setContentText("Está na hora  de tomar o remédio " + intent.getStringExtra("nome") + " às " + intent.getStringExtra("horario"))
                 .setPriority(Notification.PRIORITY_DEFAULT)
-                .addAction(R.drawable.ic_launcher_background, "ABRIR APLICATIVO!", pendingIntent)
+                .addAction(R.drawable.icon, "VISUALIZAR REMÉDIOS", pendingIntent)
                 .setAutoCancel(false);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);

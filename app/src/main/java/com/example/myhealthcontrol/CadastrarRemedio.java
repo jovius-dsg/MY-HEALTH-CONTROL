@@ -1,8 +1,6 @@
 package com.example.myhealthcontrol;
 
 import android.app.AlarmManager;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
@@ -19,7 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myhealthcontrol.dao.BancoDAO;
 import com.example.myhealthcontrol.modelo.Alarme;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class CadastrarRemedio extends AppCompatActivity {
     BancoDAO alarmeDao;
@@ -78,6 +79,11 @@ public class CadastrarRemedio extends AppCompatActivity {
                     if (nome.isEmpty() || dosagem.isEmpty() || frequencia.isEmpty() || horario.isEmpty()) {
                         alert("Preencha todos os campos!");
                     } else {
+                        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
+                        Date dateHorario = dateFormat.parse(horario);
+
+                        int intervalo = (Integer.parseInt(frequencia) * 1000) * 60 * 60;
+
                         Button btnVariavel = findViewById(R.id.btnVariavel);
                         if (btnVariavel.getText().toString().equals("Cadastrar")) {
 
@@ -93,28 +99,31 @@ public class CadastrarRemedio extends AppCompatActivity {
                                 alert("Erro no banco!");
                             } else {
                                 alert("Cadastro realizado com sucesso!");
-                                NotificationChannel();
 
                                 Calendar calendar = Calendar.getInstance();
-                                calendar.set(Calendar.HOUR_OF_DAY, 19);
-                                calendar.set(Calendar.MINUTE, 45);
-                                calendar.set(Calendar.SECOND, 00);
+                                calendar.set(Calendar.HOUR_OF_DAY, dateHorario.getHours());
+                                calendar.set(Calendar.MINUTE, dateHorario.getMinutes());
+                                calendar.set(Calendar.SECOND, dateHorario.getSeconds());
 
-//                                if (Calendar.getInstance().after(calendar)) {
-                                calendar.add(Calendar.DAY_OF_MONTH, 1);
-//                                }
+                                if (Calendar.getInstance().after(calendar)) {
+                                    calendar.add(Calendar.DAY_OF_MONTH, 1);
+                                }
 
                                 Intent intent = new Intent(CadastrarRemedio.this, MemoBroadcast.class);
+
+                                intent.putExtra("nome", nomeET.getText().toString());
+                                intent.putExtra("horario", horarioET.getText().toString());
+
                                 PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0,
                                         intent, PendingIntent.FLAG_IMMUTABLE);
 
                                 AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-                                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                                        Integer.parseInt(alarme.getFrequencia()), pendingIntent);
+                                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), intervalo, pendingIntent);
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                                     alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                                             pendingIntent);
                                 }
+
                             }
                         } else {
                             alarme.setNome(nome);
@@ -128,8 +137,33 @@ public class CadastrarRemedio extends AppCompatActivity {
 
                             if (retornoDB == -1) {
                                 alert("Erro ao alterar!");
+                                return;
                             } else {
                                 alert("Atualização realizada com sucesso!");
+
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(Calendar.HOUR_OF_DAY, dateHorario.getHours());
+                                calendar.set(Calendar.MINUTE, dateHorario.getMinutes());
+                                calendar.set(Calendar.SECOND, dateHorario.getSeconds());
+
+                                if (Calendar.getInstance().after(calendar)) {
+                                    calendar.add(Calendar.DAY_OF_MONTH, 1);
+                                }
+
+                                Intent intent = new Intent(CadastrarRemedio.this, MemoBroadcast.class);
+
+                                intent.putExtra("nome", nomeET.getText().toString());
+                                intent.putExtra("horario", horarioET.getText().toString());
+
+                                PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0,
+                                        intent, PendingIntent.FLAG_IMMUTABLE);
+
+                                AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), intervalo, pendingIntent);
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                                            pendingIntent);
+                                }
                             }
                         }
                         Intent i = new Intent(CadastrarRemedio.this, Menu.class);
@@ -138,26 +172,26 @@ public class CadastrarRemedio extends AppCompatActivity {
 
                 } catch (Exception e) {
                     Log.e("ERROR AO SALVAR ALARME", e.getMessage());
-                    alert("Ops, infelizmente algo de errado aconteceu!");
+
+                    alert("Ops, digite um horário em formato válido!. Ex: 19:30:00");
+
                 }
             }
         });
     }
 
-    private void NotificationChannel() {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "Frases";
-            String description = "FRASES DO DIA";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("Notification", name, importance);
-            channel.setDescription(description);
-
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-
-    }
+//    private void NotificationChannel(String description) {
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+//            NotificationChannel channel = new NotificationChannel("Notification", "remedio", importance);
+//            channel.setDescription(description);
+//
+//            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+//            notificationManager.createNotificationChannel(channel);
+//        }
+//
+//    }
 
     public void voltar(View v) {
         startActivity(new Intent(CadastrarRemedio.this, Menu.class));

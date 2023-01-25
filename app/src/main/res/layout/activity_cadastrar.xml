@@ -82,7 +82,7 @@
             android:fontFamily="@font/montserrat_medium"
             android:hint="Horário:"
             android:inputType="time"
-            android:maxLength="6"
+            android:maxLength="8"
             android:textColor="#222222"
             android:textColorHint="#616161"
             android:textSize="24sp" />

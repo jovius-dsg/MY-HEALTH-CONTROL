@@ -82,7 +82,8 @@ public class CadastrarRemedio extends AppCompatActivity {
                         DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
                         Date dateHorario = dateFormat.parse(horario);
 
-                        int intervalo = (Integer.parseInt(frequencia) * 1000) * 60 * 60;
+                        int intervalo24Horas = 24 / Integer.parseInt(frequencia);
+                        int intervalo = (intervalo24Horas * 1000) * 60 * 60;
 
                         Button btnVariavel = findViewById(R.id.btnVariavel);
                         if (btnVariavel.getText().toString().equals("Cadastrar")) {
@@ -118,7 +119,8 @@ public class CadastrarRemedio extends AppCompatActivity {
                                         intent, PendingIntent.FLAG_IMMUTABLE);
 
                                 AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-                                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), intervalo, pendingIntent);
+
+                                alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), intervalo, pendingIntent);
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                                     alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                                             pendingIntent);

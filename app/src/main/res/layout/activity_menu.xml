@@ -44,7 +44,7 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nome            Horario             Frequência"
+                android:text="Lista de alarmes de remédios cadastrados"
                 android:textSize="18dp" />
         </LinearLayout>
 

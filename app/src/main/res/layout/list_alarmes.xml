@@ -11,21 +11,30 @@
             android:id="@+id/tvNome"
             android:layout_width="166dp"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
             android:text="Nome"
+            android:textColor="#222222"
+            android:textColorHint="#222222"
             android:textSize="18dp" />
 
         <TextView
             android:id="@+id/tvHorario"
             android:layout_width="107dp"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
             android:text="Horario"
+            android:textColor="#222222"
+            android:textColorHint="#222222"
             android:textSize="18dp" />
 
         <TextView
             android:id="@+id/tvFrequencia"
             android:layout_width="138dp"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_medium"
             android:text="Frequencia"
+            android:textColor="#222222"
+            android:textColorHint="#222222"
             android:textSize="18dp" />
 
     </androidx.gridlayout.widget.GridLayout>

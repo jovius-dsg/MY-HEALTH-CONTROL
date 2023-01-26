@@ -160,7 +160,7 @@ public class BancoDAO extends SQLiteOpenHelper {
             Alarme p = new Alarme();
 
             p.setId(cursor.getInt(0));
-            p.setNome("Nome: " + cursor.getString(1) + "\nHorário: " + cursor.getString(2));
+            p.setNome(cursor.getString(1));
             p.setHorario(cursor.getString(2));
             p.setDosagem(cursor.getString(3));
             p.setFrequencia(cursor.getString(4));

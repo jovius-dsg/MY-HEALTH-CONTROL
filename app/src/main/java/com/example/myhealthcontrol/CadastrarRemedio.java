@@ -154,8 +154,8 @@ public class CadastrarRemedio extends AppCompatActivity {
 
                                 Intent intent = new Intent(CadastrarRemedio.this, MemoBroadcast.class);
 
-                                intent.putExtra("nome", nomeET.getText().toString());
-                                intent.putExtra("horario", horarioET.getText().toString());
+                                intent.putExtra("nome", alarme.getNome());
+                                intent.putExtra("horario", alarme.getHorario());
 
                                 PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0,
                                         intent, PendingIntent.FLAG_IMMUTABLE);
